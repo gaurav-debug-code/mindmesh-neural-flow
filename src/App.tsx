@@ -27,13 +27,14 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/node-editor" element={<NodeEditor />} />
-            <Route path="/dashboard/neural-map" element={<NeuralMap />} />
-            <Route path="/dashboard/focus" element={<FocusMode />} />
-            <Route path="/dashboard/time-capsule" element={<TimeCapsule />} />
-            <Route path="/dashboard/calendar" element={<CalendarView />} />
-            <Route path="/dashboard/settings" element={<Settings />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="/dashboard/node-editor" element={<NodeEditor />} />
+              <Route path="/dashboard/neural-map" element={<NeuralMap />} />
+              <Route path="/dashboard/focus" element={<FocusMode />} />
+              <Route path="/dashboard/time-capsule" element={<TimeCapsule />} />
+              <Route path="/dashboard/calendar" element={<CalendarView />} />
+              <Route path="/dashboard/settings" element={<Settings />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

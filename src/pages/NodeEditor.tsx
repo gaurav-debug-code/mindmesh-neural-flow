@@ -2,10 +2,9 @@
 import { useEffect } from "react";
 import { NodeEditor as NodeEditorComponent } from "@/components/NodeEditor";
 import { useNodes } from "@/hooks/useNodes";
-import { toast } from "@/hooks/use-toast";
 
 const NodeEditor = () => {
-  const { nodes, createNode } = useNodes();
+  const { nodes } = useNodes();
 
   useEffect(() => {
     // Console log the current nodes when the component mounts
@@ -13,9 +12,7 @@ const NodeEditor = () => {
   }, [nodes]);
 
   return (
-    <div className="container mx-auto py-6">
-      <h1 className="text-3xl font-bold mb-6 neural-text">Node Editor</h1>
-      
+    <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <NodeEditorComponent />
@@ -39,14 +36,14 @@ const NodeEditor = () => {
           ) : (
             <div className="flex items-center justify-center h-64 border border-dashed border-neural-muted/50 rounded-lg">
               <p className="text-muted-foreground text-center">
-                3D visualization of your neural network will appear here.<br />
-                Create some nodes to get started.
+                No nodes created yet.<br />
+                Use the form to add your first node.
               </p>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
