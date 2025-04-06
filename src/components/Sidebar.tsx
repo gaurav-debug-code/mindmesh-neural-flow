@@ -9,7 +9,7 @@ import {
   Clock,
   Edit3,
   Home,
-  LayersLinked,
+  Network,
   Settings,
   Target,
   Calendar,
@@ -54,7 +54,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
           {[
             { name: "Dashboard", icon: Home, path: "/dashboard" },
             { name: "Node Editor", icon: Edit3, path: "/dashboard/node-editor" },
-            { name: "Neural Map", icon: LayersLinked, path: "/dashboard/neural-map" },
+            { name: "Neural Map", icon: Network, path: "/dashboard/neural-map" },
             { name: "Focus Mode", icon: Target, path: "/dashboard/focus" },
             { name: "Time Capsule", icon: Clock, path: "/dashboard/time-capsule" },
             { name: "Calendar", icon: Calendar, path: "/dashboard/calendar" },

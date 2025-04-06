@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { LandingScene } from "@/components/LandingScene";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { AuthModal } from "@/components/AuthModal";
 import { useNavigate } from "react-router-dom";
-import { Brain, Lightbulb, Zap, LineChart, Lock } from "lucide-react";
+import { Brain, Lightbulb, Zap, LineChart, Lock, Calendar, Check } from "lucide-react";
 
 const Index = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -13,7 +12,6 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // This setTimeout is just to give a nice fade-in effect
     const timer = setTimeout(() => {
       setLoaded(true);
     }, 100);
@@ -33,7 +31,6 @@ const Index = () => {
         
         <LandingScene />
         
-        {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center px-4">
           <div className={`container mx-auto text-center transition-all duration-1000 ${loaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
             <div className="max-w-3xl mx-auto">
@@ -71,7 +68,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Features Section */}
         <section id="features" className="py-20 px-4">
           <div className="container mx-auto">
             <div className="text-center mb-16">
@@ -128,7 +124,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* How It Works Section */}
         <section id="how-it-works" className="py-20 px-4 bg-neural-muted/10">
           <div className="container mx-auto">
             <div className="text-center mb-16">
@@ -179,7 +174,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Pricing Section */}
         <section id="pricing" className="py-20 px-4">
           <div className="container mx-auto">
             <div className="text-center mb-16">
@@ -272,7 +266,6 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Footer */}
         <footer className="py-12 px-4 border-t border-neural-muted/30">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center">
