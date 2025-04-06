@@ -14,6 +14,7 @@ import {
   Target,
   Calendar,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   className?: string;
@@ -21,10 +22,20 @@ interface SidebarProps {
 
 export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
+
+  const navItems = [
+    { name: "Dashboard", icon: Home, path: "/dashboard" },
+    { name: "Node Editor", icon: Edit3, path: "/dashboard/node-editor" },
+    { name: "Neural Map", icon: Network, path: "/dashboard/neural-map" },
+    { name: "Focus Mode", icon: Target, path: "/dashboard/focus" },
+    { name: "Time Capsule", icon: Clock, path: "/dashboard/time-capsule" },
+    { name: "Calendar", icon: Calendar, path: "/dashboard/calendar" },
+  ];
 
   return (
     <div
@@ -51,43 +62,44 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
       <nav className="flex-1 overflow-y-auto py-4">
         <div className="px-3 space-y-1">
-          {[
-            { name: "Dashboard", icon: Home, path: "/dashboard" },
-            { name: "Node Editor", icon: Edit3, path: "/dashboard/node-editor" },
-            { name: "Neural Map", icon: Network, path: "/dashboard/neural-map" },
-            { name: "Focus Mode", icon: Target, path: "/dashboard/focus" },
-            { name: "Time Capsule", icon: Clock, path: "/dashboard/time-capsule" },
-            { name: "Calendar", icon: Calendar, path: "/dashboard/calendar" },
-          ].map((item) => (
-            <Button
-              key={item.path}
-              variant="ghost"
-              asChild
-              className={cn(
-                "w-full justify-start mb-1 text-muted-foreground hover:text-foreground hover:bg-neural-muted/30",
-                collapsed ? "px-2" : "px-3"
-              )}
-            >
-              <a href={item.path} className={cn("flex items-center", collapsed && "justify-center")}>
-                <item.icon className="h-5 w-5" />
-                {!collapsed && <span className="ml-2">{item.name}</span>}
-              </a>
-            </Button>
-          ))}
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            
+            return (
+              <Button
+                key={item.path}
+                variant="ghost"
+                asChild
+                className={cn(
+                  "w-full justify-start mb-1 hover:bg-neural-muted/30",
+                  isActive ? "bg-neural-muted/30 text-foreground" : "text-muted-foreground hover:text-foreground",
+                  collapsed ? "px-2" : "px-3"
+                )}
+              >
+                <Link to={item.path} className={cn("flex items-center", collapsed && "justify-center")}>
+                  <item.icon className="h-5 w-5" />
+                  {!collapsed && <span className="ml-2">{item.name}</span>}
+                </Link>
+              </Button>
+            );
+          })}
         </div>
       </nav>
 
-      <div className="p-4 border-t border-neural-muted/30 flex items-center">
+      <div className="p-4 border-t border-neural-muted/30">
         <Button
           variant="ghost"
-          size="icon"
+          size={collapsed ? "icon" : "default"}
           asChild
-          className="text-muted-foreground hover:text-foreground"
+          className={cn(
+            "w-full justify-start hover:bg-neural-muted/30",
+            location.pathname === "/dashboard/settings" ? "bg-neural-muted/30 text-foreground" : "text-muted-foreground hover:text-foreground",
+          )}
         >
-          <a href="/dashboard/settings">
+          <Link to="/dashboard/settings" className={cn("flex items-center", collapsed && "justify-center")}>
             <Settings className="h-5 w-5" />
             {!collapsed && <span className="ml-2">Settings</span>}
-          </a>
+          </Link>
         </Button>
       </div>
     </div>

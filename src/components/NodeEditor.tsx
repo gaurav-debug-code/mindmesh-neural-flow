@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNodes } from "@/hooks/useNodes";
 
 interface NodeFormData {
   title: string;
@@ -22,6 +23,7 @@ const initialFormData: NodeFormData = {
 export const NodeEditor: React.FC = () => {
   const [formData, setFormData] = useState<NodeFormData>(initialFormData);
   const { toast } = useToast();
+  const { createNode } = useNodes();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -34,14 +36,24 @@ export const NodeEditor: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically dispatch an action to add the node to your store
+    
+    // Log the form data
     console.log("Creating node:", formData);
     
+    // Create the node in the Redux store
+    createNode({
+      title: formData.title,
+      description: formData.description,
+      category: formData.category,
+    });
+    
+    // Show success toast
     toast({
       title: "Node created",
       description: `${formData.title} has been added to your neural network.`,
     });
     
+    // Reset form
     setFormData(initialFormData);
   };
 
