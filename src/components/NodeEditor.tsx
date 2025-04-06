@@ -41,10 +41,16 @@ export const NodeEditor: React.FC = () => {
     console.log("Creating node:", formData);
     
     // Create the node in the Redux store
+    // Add a random position in 3D space for the node
     createNode({
       title: formData.title,
       description: formData.description,
       category: formData.category,
+      position: [
+        Math.random() * 10 - 5,  // X between -5 and 5
+        Math.random() * 10 - 5,  // Y between -5 and 5
+        Math.random() * 10 - 5   // Z between -5 and 5
+      ]
     });
     
     // Show success toast
